@@ -10,3 +10,4 @@ it automatically uses gg's roulette + saves credentials about the person in csv.
 
 # To fix:
 * handling waiting while site has network issues
+* make code more appealing
