@@ -1,7 +1,7 @@
 # pythonggroulette
 automatic ggroulette (https://www.gg.pl/) using playwright 
 
-it automatically using gg's roulette + saving credentials about the person in csv. file.
+it automatically uses gg's roulette + saves credentials about the person in csv. file.
 
 
 # How to turn it on
