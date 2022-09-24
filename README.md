@@ -8,6 +8,7 @@ it automatically uses gg's roulette + saves credentials about the person in csv.
 * set username and password in script 
 
 
-# To fix:
+# To fix/update:
 * handling waiting while site has network issues
+* change avatar link to actual image
 * make code more appealing
