@@ -28,22 +28,21 @@ def rouletteInformation():
     sex = re.findall('^\w+', additional[0])
 
     numergg = re.findall('[0-9]+', soup.find_all('a', href=True)[1]['href'])[0]
-    namee = "".join(re.findall('[^🏆✅]', name[2].text))
+    nickname = "".join(re.findall('[^🏆✅]', name[2].text))
     desc = " ".join([descript.strip() for descript in description.splitlines()])
     age = "".join(re.findall('[0-9]+', additional[0]))
     date = str(datetime.now())
     avatar = soup.find_all('img')[0]['src']
 
     print('numer gg: ' + numergg)
-    print('imie: ' + namee)
+    print('imie: ' + nickname)
     print('opis: ' + desc)
     print('wiek: ' + age)
     print('płeć: ' + sex[0])
     if len(additional) > 1:
         print('miejscowosc: ' + additional[1])
     else:
-        additional = 'nie podana'
-        print('miejscowosc: ' + additional)
+        print('miejscowosc: nie podano')
     print('kiedy: ' + date)
     print('avatar: ' + avatar)
     if '🏆' in name[2].text:
@@ -68,7 +67,7 @@ def rouletteInformation():
         if not exists:
             writer.writerow(headers)
 
-        row = [numergg, namee, age, sex[0], additional[1], desc, date, avatar, premium, verified]
+        row = [numergg, nickname, age, sex[0], additional[1], desc, date, avatar, premium, verified]
         writer.writerow(row)
 
 
