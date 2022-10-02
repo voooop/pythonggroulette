@@ -9,7 +9,7 @@ import time
 def main():
     global page
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, slow_mo=250)
+        browser = p.chromium.launch(headless=False, slow_mo=250)
         page = browser.new_page()
         logging()
         while True:
@@ -90,7 +90,7 @@ def logging():
 
     page.click('a[class=roulette]')
     page.click('input[value="Opcje wyszukiwania"]')
-    page.click('img[src="/images/sr-avatar-blank-female-80.png"]')  # set females only
+    # page.click('img[src="/images/sr-avatar-blank-female-80.png"]')  # set females only
     # page.click('img[src="/images/sr-avatar-blank-male-80.png"]') # set males only
     page.locator('div[class=rc-slider-step]').click(position={'x': 18, 'y': 0})  # set range of ages to 18-120
     page.is_visible('input[value="Losuj rozmówcę"]')
@@ -101,18 +101,13 @@ def logging():
 
 
 def roulette():
+    time.sleep(2)   # TODO: Delete it somehow
     page.locator('div[class="state-2"]').wait_for(state='hidden', timeout=300000)
 
     if page.is_visible('div[class="state-3 interlocutor"]'):
         rouletteInformation()
         page.locator('input[value="Losuj dalej"]').click()
-        time.sleep(1)
-
-        if page.is_visible('div[class="state-1 roulette-buttons"]'):
-            page.locator('#rouletteData input:has-text("Losuj rozmówcę")').click()
-        else:
-            pass
-    else:
+    elif page.is_visible('div[class="state-1 roulette-buttons"]'):
         page.locator('#rouletteData input:has-text("Losuj rozmówcę")').click()
 
 
