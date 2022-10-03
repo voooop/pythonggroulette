@@ -9,7 +9,7 @@ import time
 def main():
     global page
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=250)
+        browser = p.chromium.launch(headless=True, slow_mo=250)  # headless - if you want to see your browser
         page = browser.new_page()
         logging()
         while True:
@@ -42,7 +42,8 @@ def rouletteInformation():
     if len(additional) > 1:
         print('miejscowosc: ' + additional[1])
     else:
-        print('miejscowosc: nie podano')
+        additional.append('nie podano')
+        print('miejscowosc: ' + additional[1])
     print('kiedy: ' + date)
     print('avatar: ' + avatar)
     if '🏆' in name[2].text:
